@@ -1,0 +1,20 @@
+{% extends "master.html" %}
+
+{% block title %}
+    Playlist details
+{% endblock %}
+
+{% block content %}
+
+    <h1 class="container my-3">Playlist details</h1>
+
+    <p class="container mb-0">Name: {{playlist.name}}</p>
+    <p class="container">Author: {{playlist.user}}</p>
+
+    <ol class="container">
+        {% for song in songs %}
+            <li>{{song.name}} | <a href="{% url 'song_details' id=song.id %}">Details</a> | <a href="{% url 'delete_from_playlist' playlist_id=playlist.id song_id=song.id %}">Remove</a></li>
+        {% endfor %}
+    </ol>
+
+{% endblock %}

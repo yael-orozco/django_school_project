@@ -1,0 +1,19 @@
+{% extends "master.html" %}
+
+{% block title %}
+    Add song to album
+{% endblock %}
+
+{% block content %}
+
+    <h1 class="container my-3">Add song to "{{album.name}}"</h1>
+
+    <form action="" method="POST" class="container my-3">
+        {% csrf_token %}
+
+        {{form.as_p}}
+
+        <input type="submit" value="Add" class="btn btn-light border border-black">
+    </form>
+
+{% endblock %}

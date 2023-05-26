@@ -1,0 +1,36 @@
+{% extends "master.html" %}
+
+{% block title %}
+    Login
+{% endblock %}
+
+{% block content %}
+
+    <h1 class="container my-5">Login</h1>
+
+    <form action="" method="POST" class="container">
+        {% csrf_token %}
+
+        <div class="container my-3">
+            <label for="username">Username: </label>
+            <input type="text" name="username">
+        </div>
+
+        <div class="container my-3">
+            <label for="password">Password: </label>
+            <input type="password" name="password">
+        </div>
+
+        <div class="container my-5">
+            <input type="submit" name="login_user" class="btn btn-light border border-black" value="Log In">
+        </div>
+
+    </form>
+
+    {% for message in messages %}
+        <p class="container text-info fw-bold">{{message}}</p>
+    {% endfor %}
+
+    <p class="container">Don't have an account? Register <a href="/register">here</a></p>
+
+{% endblock %}

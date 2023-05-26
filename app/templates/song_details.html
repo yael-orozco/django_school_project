@@ -1,0 +1,21 @@
+{% extends "master.html" %}
+
+{% block title %}
+    Song details
+{% endblock %}
+
+{% block content %}
+
+    <h1 class="container my-3">{{song.name}}</h1>
+
+    <p class="container my-3">Album: <a href="{% url 'album_details' id=song.album.id %}">{{song.album.name}}</a></p>
+
+    <p class="container my-3">Link: <a href="{{song.link}}">{{song.link}}</a></p>
+
+    {% if request.user == song.album.author %}
+        <div class="container my-3">
+            <a class="col-md-auto mx-1 btn btn-danger" href="{% url 'delete_song' id=song.id %}">Delete</a>
+        </div>
+    {% endif %}
+
+{% endblock %}

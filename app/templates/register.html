@@ -1,0 +1,33 @@
+{% extends "master.html" %}
+
+{% block title %}
+    Register
+{% endblock %}
+
+{% block content %}
+
+    <h1 class="container my-5">Register</h1>
+
+    <div class="container my-3">
+        <form action="" method="POST">
+            {% csrf_token %}
+
+            {% for field in form %}
+                <div class="container my-3">
+                    {{field.label}}
+                    {{field}}
+                </div>
+            {% endfor %}
+
+            <div class="container my-5">
+                <input type="submit" name="create_user" class="btn btn-light border border-black" value="Register">
+            </div>
+
+        </form>
+    </div>
+
+    {{form.errors}}
+
+    <p class="container">Already have an account? Sign in <a href="/login">here</a></p>
+
+{% endblock %}

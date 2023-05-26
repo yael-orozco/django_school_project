@@ -1,0 +1,29 @@
+{% extends "master.html" %}
+
+{% block title %}
+    Artist details
+{% endblock %}
+
+{% block content %}
+
+    <h1 class="container mt-3 mb-5">{{artist.name}}</h1>
+
+    <p class="container mt-3">Description:</p>
+    <p class="container">{{artist.description}}</p>
+
+    <div class="container my-5">
+        <h4 class="my-3">Artist's Albums</h4>
+            <div class="row container">
+                {% for album in albums %}
+
+                <a href="{% url 'album_details' id=album.id %}" class="text-decoration-none text-black col-md-auto p-0 mx-3">
+                    <div class="d-flex align-items-center justify-content-center" style="width: 100px; height: 100px;">
+                        <img src="{{album.image.url}}" alt="album_image" width="100px" class="border border-black border-2 rounded-4">
+                    </div>
+                </a>
+
+                {% endfor %}
+            </div>
+    </div>
+
+{% endblock %}

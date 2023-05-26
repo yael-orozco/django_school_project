@@ -1,0 +1,35 @@
+{% extends "master.html" %}
+
+{% block title %}
+    Album details
+{% endblock %}
+
+{% block content %}
+
+    <h1 class="container my-3">{{album.name}}</h1>
+
+    <p class="container">By: <a href="{% url 'artist_details' id=album.author.id %}">{{album.author.artist}}</a></p>
+    <p class="container">Genre: {{album.genre}}</p>
+
+    {% if album.image %}
+        <div class="container my-3">
+            <img src="{{album.image.url}}" alt="album_image" width="300px">
+        </div>
+    {% endif %}
+    
+    <ol class="container">
+        {% for song in songs %}
+            <li>{{song.name}} | <a href="{% url 'song_details' id=song.id %}">Details</a> | <a href="{% url 'add_song_to_playlist' id=song.id %}">Add to Playlist</a></li>
+        {% endfor %}
+    </ol>
+
+    {% if request.user == album.author %}
+        <div class="container my-3">
+            <div class="row">
+                <a class="col-md-auto mx-1 btn btn-danger" href="{% url 'delete_album' id=album.id %}">Delete</a>
+                <a class="col-md-auto mx-1 btn btn-primary" href="{% url 'add_song_to_album' id=album.id %}">Add Song</a>
+            </div>
+        </div>
+    {% endif %}
+
+{% endblock %}

@@ -1,0 +1,19 @@
+{% extends "master.html" %}
+
+{% block title %}
+    Update artist
+{% endblock %}
+
+{% block content %}
+
+    <div class="container my-3">
+        <form action="" method="POST">
+            {% csrf_token %}
+    
+            {{form.as_p}}
+    
+            <input type="submit" value="Update">
+        </form>
+    </div>
+
+{% endblock %}

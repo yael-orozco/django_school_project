@@ -1,0 +1,60 @@
+{% extends "master.html" %}
+
+{% block title %}
+    Home
+{% endblock %}
+
+{% block content %}
+
+    <h1 class="container my-3">Home</h1>
+
+    <h4 class="container my-3"><a href="{% url 'all_albums' %}">Explore Albums</a></h4>
+
+    <div class="container my-5">
+        <h4 class="my-3">My Playlists</h4>
+            <div class="row container">
+                <a href="/new_playlist" class="text-decoration-none text-black col-md-auto p-0 mx-3">
+                    <div class="border border-black border-2 rounded-4 d-flex align-items-center justify-content-center fs-3 fw-bold" style="width: 100px; height: 100px;">
+                        +
+                    </div>
+                </a>
+
+                {% for playlist in playlists %}
+
+                <a href="{% url 'playlist_details' id=playlist.id %}" class="text-decoration-none text-black col-md-auto p-0 mx-3">
+                    <div class="d-flex align-items-center justify-content-center border border-black border-2 rounded-4" style="width: 100px; height: 100px;">
+                        {{playlist.name}}
+                    </div>
+                </a>
+
+                {% endfor %}
+            </div>
+    </div>
+
+    <div class="container my-5">
+        <h4 class="my-3">My Albums</h4>
+            <div class="row container">
+                <a href="/add_album" class="text-decoration-none text-black col-md-auto p-0 mx-3">
+                    <div class="border border-black border-2 rounded-4 d-flex align-items-center justify-content-center fs-3 fw-bold" style="width: 100px; height: 100px;">
+                        +
+                    </div>
+                </a>
+
+                {% for album in albums %}
+
+                <a href="{% url 'album_details' id=album.id %}" class="text-decoration-none text-black col-md-auto p-0 mx-3">
+                    <div class="d-flex align-items-center justify-content-center" style="width: 100px; height: 100px;">
+                        <img src="{{album.image.url}}" alt="album_image" width="100px" class="border border-black border-2 rounded-4">
+                    </div>
+                </a>
+
+                {% endfor %}
+
+            </div>
+    </div>
+
+    <p class="container mt-5 mb-0">Hello, {{request.user}}</p>
+    <p class="container my-1"><a href="{% url 'update_artist' id=request.user.id %}">Update artist profile</a></p>
+    <p class="container my-1"><a href="{% url 'logout' %}">Log out</a></p>
+
+{% endblock %}
